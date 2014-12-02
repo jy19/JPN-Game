@@ -1,0 +1,48 @@
+html, body {
+	background-color: #fff;
+	font-family: 'Lato', sans-serif;
+}
+
+#pagetitle {
+	text-align: center;
+	padding: 5vmin;
+	color: #13ace5;
+	font-size: 10vmin;
+}
+
+.buttonwrapper {
+	width: 8%;
+	margin: auto;
+	text-align: center;
+
+}
+
+.buttons {
+	position: relative;
+	margin: 1vmin;
+	border: none;
+	text-align: center;
+	background-color: #13ace5;
+	color: #fff;
+	font-family: 'Lato', sans-serif;
+	font-size: 3.8vmin;
+	padding: 1.4vmin, 1.6vmin;
+	line-height: 2.33;
+	/*padding: 15px, 45px;*/
+	border-radius: 5px;
+}
+
+.buttons-block {
+	display: block;
+	width: 100%;
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.buttons:hover {
+
+}
+
+.buttons:active {
+
+}

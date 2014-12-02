@@ -12,10 +12,10 @@ process.env.PORT = 9100;
 app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'ejs');
 app.set('view engine', 'jade');
-// app.engine('html', require('ejs').renderFile);
+app.engine('html', require('ejs').renderFile);
 
 app.get('/', function(req, res) {
-	res.render('index', {title: 'Game..'});
+	res.render('index.html', {title: 'Game..'});
 });
 
 
