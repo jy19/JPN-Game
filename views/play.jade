@@ -1,0 +1,16 @@
+extends layout
+
+block style
+	link(rel='stylesheet', href='/stylesheets/play.css')
+
+block scripts
+
+block content
+	p#pagetitle
+		| play
+
+	div.buttonwrapper
+		button#romabtn.buttons.pbuttons.buttons-block romaji
+		button#kanabtn.buttons.pbuttons.buttons-block kana
+		button#kanjibtn.buttons.pbuttons.buttons-block kanji
+		button#vocabbtn.buttons.pbuttons.buttons-block vocab

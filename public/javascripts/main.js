@@ -1,5 +1,5 @@
 function play() {
-
+	window.location.href = "/play";
 }
 
 function review() {
@@ -10,4 +10,4 @@ function review() {
 $(document).ready( function() {
 	$("#playbtn").click(play);
 	$("#reviewbtn").click(review);
-})
+});

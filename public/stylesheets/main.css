@@ -8,6 +8,7 @@ html, body {
 	padding: 5vmin;
 	color: #13ace5;
 	font-size: 10vmin;
+	font-weight: bold;
 }
 
 .buttonwrapper {
@@ -26,6 +27,7 @@ html, body {
 	color: #fff;
 	font-family: 'Lato', sans-serif;
 	font-size: 3.8vmin;
+	font-weight: bold;
 	padding: 1.4vmin, 1.6vmin;
 	line-height: 2.33;
 	/*padding: 15px, 45px;*/
@@ -40,9 +42,19 @@ html, body {
 }
 
 .buttons:hover {
-
+	border-bottom: 2px solid #e54c13;
+	box-shadow: 5px 5px 2px #e5e5e5;
 }
 
 .buttons:active {
+	background-color: #0f89b7;
+	border-bottom: 2px solid #e54c13;
+	box-shadow: 5px 5px 2px #cbcbcb;
 
+}
+
+.pbuttons {
+	width: 20%;
+	height: 0;
+	padding-bottom: 20%;
 }
