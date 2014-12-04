@@ -1,13 +1,13 @@
 extends layout
 
 block style
-
+	link(rel='stylesheet', href='/stylesheets/main.css')
 block scripts
 
 block content
 	p#pagetitle
 		| review
-	#buttonwrapper
+	div.buttonwrapper
 		button#playbtn.buttons.buttons-block hiragana
 		button#reviewbtn.buttons.buttons-block katakana
 		button#reviewbtn.buttons.buttons-block kanji

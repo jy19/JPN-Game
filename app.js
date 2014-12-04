@@ -2,6 +2,8 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+
+var routes = require('./routes/index');
 // var http = require('http').Server(app);
 
 var app = express();
@@ -14,10 +16,18 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 app.engine('html', require('ejs').renderFile);
 
-app.get('/', function(req, res) {
-	res.render('index.html', {title: 'Game..'});
-});
+// app.get('/', function(req, res) {
+// 	res.render('index.html', {title: 'Game..'});
+// });
 
+// app.get('/', function(req, res) {
+// 	res.render('index', {title: 'Memory Game'});
+// });
+
+// app.get('/review', function(req, res) {
+// 	res.render('review');
+// });
+app.use('/', routes);
 
 //middleware setup
 app.use(logger('dev'));

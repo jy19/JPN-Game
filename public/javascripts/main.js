@@ -3,10 +3,11 @@ function play() {
 }
 
 function review() {
-	window.location.href = "review.html";
+	console.log("review clicked");
+	window.location.href = "/review";
 }
 
-$document.ready( function() {
+$(document).ready( function() {
 	$("#playbtn").click(play);
 	$("#reviewbtn").click(review);
 })

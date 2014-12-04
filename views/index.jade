@@ -1,12 +1,18 @@
 extends layout
 
 block style
+	link(rel='stylesheet', href='/stylesheets/main.css')
 
 block scripts
-	script(src="javascripts/main.js")
+	script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+	script(scr="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js")
+
 block content
 	p#pagetitle
 		| kioku joshu
-	#buttonwrapper
+
+	div.buttonwrapper
 		button#playbtn.buttons.buttons-block play
 		button#reviewbtn.buttons.buttons-block review
+
+	script(src="javascripts/main.js")
