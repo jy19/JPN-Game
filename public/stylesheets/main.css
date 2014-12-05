@@ -11,14 +11,20 @@ html, body {
 	font-weight: bold;
 }
 
+#backbtnwrapper {
+	width: 10%;
+	text-align: left;
+}
+
 .buttonwrapper {
-	width: 8%;
+	width: 10%;
 	margin: auto;
 	text-align: center;
 
 }
 
 .buttons {
+	cursor: pointer;
 	position: relative;
 	margin: 1vmin;
 	border: none;
@@ -42,19 +48,51 @@ html, body {
 }
 
 .buttons:hover {
-	border-bottom: 2px solid #e54c13;
-	box-shadow: 5px 5px 2px #e5e5e5;
+	box-shadow: 4px 4px 2px #e5e5e5;
 }
 
 .buttons:active {
 	background-color: #0f89b7;
-	border-bottom: 2px solid #e54c13;
-	box-shadow: 5px 5px 2px #cbcbcb;
+	box-shadow: 4px 4px 2px #cbcbcb;
 
 }
 
-.pbuttons {
+.btntext {
+	padding: 5px;
+}
+
+.btntext:hover {
+	border-bottom: 3px solid #de6666;
+}
+
+img.resize {
+	width: 70%;
+	height: 70%;
+}
+
+.reviewImage {
+	text-align: center;
+}
+
+/*play formattings*/
+
+#playbtnwrapper {
 	width: 20%;
+	height: auto;
+	margin: auto;
+	display: block;
+	text-align: center;
+}
+
+.pbuttons {
+	border-radius: 10px;
+	padding: 25%;
+}
+
+.makesquare {
+	width: 50%;
 	height: 0;
-	padding-bottom: 20%;
+	padding-bottom: 45%;
+	float: left;
+	display: block;
 }

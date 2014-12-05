@@ -1,16 +1,26 @@
 extends layout
 
 block style
-	link(rel='stylesheet', href='/stylesheets/play.css')
+	link(rel='stylesheet', href='/stylesheets/main.css')
 
 block scripts
+	script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+	script(src='javascripts/play.js')
 
 block content
 	p#pagetitle
 		| play
 
-	div.buttonwrapper
-		button#romabtn.buttons.pbuttons.buttons-block romaji
-		button#kanabtn.buttons.pbuttons.buttons-block kana
-		button#kanjibtn.buttons.pbuttons.buttons-block kanji
-		button#vocabbtn.buttons.pbuttons.buttons-block vocab
+	div#playbtnwrapper
+		div#topleft.makesquare
+			button#romabtn.buttons.pbuttons
+				span.btntext romaji
+		div#topright.makesquare
+			button#kanabtn.buttons.pbuttons
+				span.btntext kana
+		div#bottomleft.makesquare
+			button#kanjibtn.buttons.pbuttons
+				span.btntext kanji	
+		div#bottomright.makesquare
+			button#vocabbtn.buttons.pbuttons
+				span.btntext vocab

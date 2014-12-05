@@ -2,16 +2,20 @@ extends layout
 
 block style
 	link(rel='stylesheet', href='/stylesheets/main.css')
+
 block scripts
+	script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+	script(src="javascripts/review.js")
+
 block content
 
 	div#pagewrapper
 		p#pagetitle
 			| review
 		div.buttonwrapper
-			button#hbtn.buttons.buttons-block hiragana
-			button#kbtn.buttons.buttons-block katakana
-			button#kanjibtn.buttons.buttons-block kanji
-
-
-	scripts(src="javascripts/review.js")
+			button#hbtn.buttons.buttons-block
+				span.btntext hiragana
+			button#kbtn.buttons.buttons-block
+				span.btntext katakana
+			button#kanjibtn.buttons.buttons-block
+				span.btntext kanji
