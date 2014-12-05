@@ -10,6 +10,25 @@ var app = express();
 
 process.env.PORT = 9100;
 
+//authentication
+
+var passport = require('passport');
+var User = require("./routes/user") 
+
+passport.use(User.localStrategy); //set up local auth for now..
+passport.serializeUser(User.serializeUser);
+passport.deserializeUser(User.deserializeUser);
+
+app.use(express.session({
+    //default session handling
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+//still need to set up express routes
+//have some posts for log in/log outs
+
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'ejs');
