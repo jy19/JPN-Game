@@ -1,0 +1,12 @@
+extends layout
+
+block style
+
+block scripts
+	script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+
+block content
+	p#pagetitle
+		| Login
+		
+	form(role='form', action='login', method='post')

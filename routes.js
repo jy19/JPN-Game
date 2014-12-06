@@ -1,5 +1,5 @@
 var passport = require('passport');
-var UserAcc = require('/models/user');
+var UserAcc = require('./models/user');
 
 module.exports = function (app) {
 	app.get('/', function (req, res) {
@@ -17,13 +17,13 @@ module.exports = function (app) {
 			}
 
 			passport.authenticate('local')(req, res, function() {
-				res.redirect('/';)
+				res.redirect('/');
 			});
 		});
 	});
 
 	app.get('/login', function(req, res) {
-		res.render('login', { user: req.user });
+		res.render('login', { title: 'login', user: req.user });
 	});
 
 	app.post('/login', passport.authenticate('local'), function(req, res) {

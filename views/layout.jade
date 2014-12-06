@@ -3,10 +3,12 @@ html
 	head
 		title= title
 		block style
-			// link(rel='stylesheet', href='/stylesheets/main.css')
+			link(rel='stylesheet', href='/stylesheets/main.css')
 			// link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css')
 		block scripts
-			
-			
+			script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
+			script(src='javascripts/play.js')
+			script(src="javascripts/review.js")
+				
 	body
 		block content
