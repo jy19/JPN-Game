@@ -6,47 +6,18 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 // var http = require('http').Server(app);
 
+var mongoose = require('mongoose');
+
+var LocalStrategy = require('passport-local').Strategy;
+
 var app = express();
 
 process.env.PORT = 9100;
 
-//authentication
-
-var passport = require('passport');
-var User = require("./routes/user") 
-
-passport.use(User.localStrategy); //set up local auth for now..
-passport.serializeUser(User.serializeUser);
-passport.deserializeUser(User.deserializeUser);
-
-app.use(express.session({
-    //default session handling
-}));
-
-app.use(passport.initialize());
-app.use(passport.session());
-
-//still need to set up express routes
-//have some posts for log in/log outs
-
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
-// app.set('view engine', 'ejs');
 app.set('view engine', 'jade');
 app.engine('html', require('ejs').renderFile);
-
-// app.get('/', function(req, res) {
-// 	res.render('index.html', {title: 'Game..'});
-// });
-
-// app.get('/', function(req, res) {
-// 	res.render('index', {title: 'Memory Game'});
-// });
-
-// app.get('/review', function(req, res) {
-// 	res.render('review');
-// });
-app.use('/', routes);
 
 //middleware setup
 app.use(logger('dev'));
@@ -54,9 +25,22 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// app.get('/', function(req, res) {
-// 	res.sendFile(__dirname + '/index.html');
-// });
+app.use('/', routes);
+
+//passport config
+var passport = require('passport');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+var UserAcc = require('./models/user')
+passport.use(new LocalStrategy(UserAcc.authenticate()));
+passport.serializeUser(UserAcc.serializeUser());
+passport.deserializeUser(UserAcc.deserializeUser());
+
+//mongoose
+mongoose.connect('mongodb://localhost/passport_local_mongoose');
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
