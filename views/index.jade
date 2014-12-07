@@ -1,12 +1,5 @@
 extends layout
 
-// block style
-	// link(rel='stylesheet', href='/stylesheets/main.css')
-
-// block scripts
-	// script(src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js")
-	// script(scr="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js")
-
 block content
 	p#pagetitle
 		| kioku joshu
@@ -17,9 +10,14 @@ block content
 		button#reviewbtn.buttons.buttons-block 
 			span.btntext review
 
-	p#infotext
-		a(href='./register').infolink sign up
-		br
-		a(href='./login').infolink login
+	if(!user)
+		p#infotext
+			a(href='./register').infolink sign up
+			br
+			a(href='./login').infolink login
+	if(user)
+		p#infotext
+			p Welcome, #{user.username}
+		a(href='./logout') Logout
 
 	script(src="javascripts/main.js")

@@ -2,13 +2,12 @@ var express = require('express');
 var path = require('path');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
-
-var routes = require('./routes/index');
-// var http = require('http').Server(app);
-
 var mongoose = require('mongoose');
-
+var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
+var routes = require('./routes/index');
+var passport = require('passport');
+// var http = require('http').Server(app);
 
 var app = express();
 
@@ -27,16 +26,18 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 
-//passport config
-var passport = require('passport');
+app.use(flash());
 
+//passport config
 app.use(passport.initialize());
 app.use(passport.session());
 
-var UserAcc = require('./models/user')
-passport.use(new LocalStrategy(UserAcc.authenticate()));
-passport.serializeUser(UserAcc.serializeUser());
-passport.deserializeUser(UserAcc.deserializeUser());
+var User = require('./models/user')
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+
 
 //mongoose
 mongoose.connect('mongodb://localhost/passport_local_mongoose');
@@ -50,8 +51,7 @@ app.use(function(req, res, next) {
     next(err);
 });
 
-/// error handlers
-
+// error handlers
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
@@ -75,3 +75,8 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+app.listen(app.get('port'), function(){
+  console.log(("Express server listening on port " + app.get('port')))
+});

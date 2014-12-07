@@ -1,7 +1,8 @@
 var passport = require('passport');
-var UserAcc = require('./models/user');
+var User = require('./models/user');
 
 module.exports = function (app) {
+
 	app.get('/', function (req, res) {
 		res.render('index', { title: 'game', user: req.user });
 	});
@@ -11,9 +12,11 @@ module.exports = function (app) {
 	});
 
 	app.post('/register', function(req, res) {
-		UserAcc.register(new UserAcc({ username: req.body.username }), req.body.password, function(err, account) {
+		User.register(new User({ username: req.body.username }), req.body.password, function(err, account) {
 			if(err) {
-				return res.render('register', { account: account });
+				console.log(err);
+				console.log("user name already exists");
+				return res.render('register', { info: "Sorry, that username is already taken." });
 			}
 
 			passport.authenticate('local')(req, res, function() {
@@ -22,13 +25,39 @@ module.exports = function (app) {
 		});
 	});
 
+	// app.post('/register', passport.authenticate('local-signup', {
+	// 	successRedirect: '/',
+	// 	failureRedirect: '/register',
+	// 	failureFlash: true
+	// }));
+
 	app.get('/login', function(req, res) {
 		res.render('login', { title: 'login', user: req.user });
 	});
 
-	app.post('/login', passport.authenticate('local'), function(req, res) {
+	app.post('/login', passport.authenticate('local'), function(req, res, err) {
 		res.redirect('/');
 	});
+	
+	//try adding error handling
+	// app.post('/login', function(req, res, next) {
+	// 	passport.authenticate('local', function(err, user, info) {
+	// 		if(err) {
+	// 			return next(err);
+	// 		}
+	// 		//gennerate json response reflecting auth status
+	// 		if(!user) {
+	// 			return res.send({success: false, message: 'authentication failed' });
+	// 		}
+	// 		return res.send({success: true, message: 'authentication succeeded' });
+	// 	})(req, res, next);
+	// });
+
+	// app.post('/login', passport.authenticate('local-login', {
+	// 	successRedirect: '/',
+	// 	failureRedirect: '/login',
+	// 	failureFlash: true
+	// }));
 
 	app.get('/logout', function(req, res) {
 		req.logout();
