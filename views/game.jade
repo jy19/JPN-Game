@@ -1,0 +1,22 @@
+doctype html
+html (ng-app='matchgame')
+	head
+		title= Memory Matching Game
+		//link for css
+		//link for angular
+		//link for game logic scripts
+	body (ng-controller='GameCtrl')
+		div Pairs left to match: {{game.unmatchedPairs}}
+		div Matching: {{game.firstPick.title}}
+
+		table
+			tr (ng-repeat='row in game.grid')
+				td (ng-repeat='title in row' ng-click='game.flipCard(card)')
+
+				div.cardsWrapper
+					div.card (ng-class='{flipped: tile.flipped}')
+						//prob need images? or maybe change it to just strings
+						//img.front (ng-src='../public/images/back.jpg')
+						//img.back (ng-src='../public/images/{{card.title}}.jpg')
+
+		//maybe a message div to display {{game.message}}
