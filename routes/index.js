@@ -15,4 +15,8 @@ router.get('/play', function(req, res) {
 	res.render('play', {title: 'Play'});
 });
 
+router.get('/game', function(req, res) {
+	res.render('game', {title: 'Memory Game'});
+});
+
 module.exports = router;

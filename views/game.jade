@@ -1,10 +1,11 @@
 doctype html
 html (ng-app='matchgame')
 	head
-		title= Memory Matching Game
+		title= title
 		//link for css
-		//link for angular
-		//link for game logic scripts
+		script(src='http://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js')
+		script(src='javascripts/gamefactory.js')
+		script(src='javascripts/matchgamelogic.js')
 	body (ng-controller='GameCtrl')
 		div Pairs left to match: {{game.unmatchedPairs}}
 		div Matching: {{game.firstPick.title}}
@@ -16,7 +17,7 @@ html (ng-app='matchgame')
 				div.cardsWrapper
 					div.card (ng-class='{flipped: tile.flipped}')
 						//prob need images? or maybe change it to just strings
-						//img.front (ng-src='../public/images/back.jpg')
-						//img.back (ng-src='../public/images/{{card.title}}.jpg')
+						img(ng-src='../public/images/back.jpg').front
+						img(ng-src='../public/images/{{card.title}}.jpg').back
 
 		//maybe a message div to display {{game.message}}

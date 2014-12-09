@@ -13,7 +13,7 @@ html, body {
 
 #infotext {
 	text-align: center;
-	color: #13ace5;
+	color: #b7b7b7;
 	font-size: 2vmin;
 }
 
@@ -85,7 +85,7 @@ a.infolink {
 }
 
 a.infolink:hover {
-	color: inherit;
+	color: #13ace5;
 	text-decoration: inherit;
 	border-bottom: 1px solid #de6666;
 }
