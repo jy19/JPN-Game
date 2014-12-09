@@ -1,9 +1,12 @@
+//no longer called, moved everything to routes/index.js
 var passport = require('passport');
 var User = require('./models/user');
 
 module.exports = function (app) {
 
 	app.get('/', function (req, res) {
+		// console.log("redirect to index");
+		// console.log(req);
 		res.render('index', { title: 'game', user: req.user });
 	});
 
@@ -14,8 +17,6 @@ module.exports = function (app) {
 	app.post('/register', function(req, res) {
 		User.register(new User({ username: req.body.username }), req.body.password, function(err, account) {
 			if(err) {
-				console.log(err);
-				console.log("user name already exists");
 				return res.render('register', { info: "Sorry, that username is already taken." });
 			}
 
@@ -36,6 +37,8 @@ module.exports = function (app) {
 	});
 
 	app.post('/login', passport.authenticate('local'), function(req, res, err) {
+		console.log("login post");
+		console.log(req.user);
 		res.redirect('/');
 	});
 	

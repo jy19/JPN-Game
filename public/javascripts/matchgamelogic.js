@@ -12,10 +12,11 @@ Card.prototype.flip = function() {
 
 function Game(cardNames) {
 	// var cardDeck = makeDeck(cardNames);
-
+	console.log("game");
+	console.log(cardNames);
 	this.cardDeck = makeDeck(cardNames);
 
-	this.grid = makeGrid(cardDeck);
+	this.grid = makeGrid(this.cardDeck);
 	this.unmatchedPairs = cardNames.length;
 
 	this.flipCard = function(card) {
@@ -52,6 +53,7 @@ function Game(cardNames) {
 
 /* create deck -- basically an array with two of each cards in it */
 function makeDeck (cardNames) {
+	console.log("make deck");
 	var cardDeck = [];
 	cardNames.forEach(function(name) {
 		cardDeck.push(new Card(name));

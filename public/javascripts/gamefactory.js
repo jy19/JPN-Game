@@ -22,16 +22,16 @@ var kchars = ["ア", "イ", "ウ", "エ", "オ",
 			"ワ", "ヲ",
 			"ン"];
 
-var rchars = ["a", "i", "u", "e", "o"
-			"ka", "ki", "ku", "ke", "ko"
-			"sa", "shi", "su", "se", "so"
-			"ta", "chi", "tsu", "te", "to"
-			"na", "ni", "nu", "ne", "no"
-			"ha", "hi", "hu", "he", "ho"
-			"ma", "mi", "mu", "me", "mo"
-			"ya", "yu", "yo"
-			"ra", "ri", "ru", "re", "ro"
-			"wa", "wo"
+var rchars = ["a", "i", "u", "e", "o",
+			"ka", "ki", "ku", "ke", "ko",
+			"sa", "shi", "su", "se", "so",
+			"ta", "chi", "tsu", "te", "to",
+			"na", "ni", "nu", "ne", "no",
+			"ha", "hi", "hu", "he", "ho",
+			"ma", "mi", "mu", "me", "mo",
+			"ya", "yu", "yo",
+			"ra", "ri", "ru", "re", "ro",
+			"wa", "wo",
 			"n"];
 
 //have card class with string -- content
@@ -39,7 +39,7 @@ var rchars = ["a", "i", "u", "e", "o"
 //randomly select from arrays to gen grid
 //generate table/grid with jquery?
 
-function getCards(numCards) {
+function getCards(numCards, chars) {
 	numCards = numCards || 16;
 	var cards = [];
 
@@ -55,29 +55,52 @@ function getCards(numCards) {
 		// 	title: pos,
 		// 	flipped: false
 		// }));
-		cards.push(new Card(pos, hchars[pos]));
-		cards.push(new Card(pos, kchars[pos]));
-		cards.push(new Card(pos, rchars[pos]));
 
-		tmphchars = tmphchars.splice(pos, 1)[0];
-		tmpkchars = tmpkchars.splice(pos, 1)[0];
-		tmprchars = tmprchars.splice(pos, 1)[0];
+		if($.inArray("h", chars) > -1) {
+			cards.push(new Card(pos, hchars[pos]));
+			tmphchars = tmphchars.splice(pos, 1)[0];
+		}
+		if($.inArray("k", chars) > -1) {
+			cards.push(new Card(pos, kchars[pos]));
+			tmpkchars = tmpkchars.splice(pos, 1)[0];
+		}
+		if($.inArray("r", chars) > -1) {
+			cards.push(new Card(pos, rchars[pos]));
+			tmprchars = tmprchars.splice(pos, 1)[0];
+		}
+		
 	}
 
 	return cards;
 }
 
-function createGame() {
+function createGame(lvltype) {
+	var cardNames = [];
+
+	switch(lvltype)  {
+		case 0: //h and k
+			getCards(["h", "k"]);
+			break;
+		case 1: //h and r
+			getCards(["h", "r"]);
+			break;
+		case 2: // k and r
+			getCards(["k", "r"]);
+			break;
+
+	}
+
 	var cardNames = getCards();
 
 	var game = new Game(cardNames);
+	console.log(game);
 
-
+	createTable(game);
 }
 
 function createTable(game) {
 	var grid = game.grid;
-	var deck = game.deck;
+	var deck = game.cardDeck;
 
 	$("#gametable").ready( function() {
 		console.log(deck);

@@ -18,7 +18,8 @@ block content
 			a(href='./login').infolink login
 	if(user)
 		p#infotext
-			p Welcome, #{user.username}
-		a(href='./logout') Logout
+			| Welcome, #{user.username}
+			br
+			a(href='./logout').infolink logout
 
 	script(src="javascripts/main.js")

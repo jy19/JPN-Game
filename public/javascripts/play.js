@@ -1,8 +1,5 @@
-function playkana() {
-	window.location.href = "/matchgame";
-}
-
 $(document).ready( function() {
+	console.log("play ready");
 	var height = $("#romabtn").height();
 	var width = $("#romabtn").width();
 
@@ -10,6 +7,15 @@ $(document).ready( function() {
 	$("#kanjibtn").height(height).width(width);
 	$("#vocabbtn").height(height).width(width);
 
-	$("#kanabtn").click(playkana);
+	$("#kanabtn").click( function() {
+		console.log("clicked kana btn");
+		playkana();
+	});
+
+	function playkana() {
+		console.log("play!!!!!?????????");
+		createGame(0);
+		window.location.href = "/matchgame";
+	}
 
 });

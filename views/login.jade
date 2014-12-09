@@ -11,6 +11,8 @@ block content
 
 	div#logincontainer
 		form(role='form', action='login', method='post', style='max-width: 400px;')
+			if(messages)
+				div#note #{messages}
 			.form-group
 				input.form-control(type='text', name="username", placeholder='Enter Username')
 			.form-group
