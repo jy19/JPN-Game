@@ -10,14 +10,15 @@ html (ng-app='matchgame')
 		div Pairs left to match: {{game.unmatchedPairs}}
 		div Matching: {{game.firstPick.title}}
 
-		table
-			tr (ng-repeat='row in game.grid')
-				td (ng-repeat='title in row' ng-click='game.flipCard(card)')
+		//table#gametable
+//			tr (ng-repeat='row in game.grid')
+//				td (ng-repeat='title in row' ng-click='game.flipCard(card)')
 
-				div.cardsWrapper
-					div.card (ng-class='{flipped: tile.flipped}')
-						//prob need images? or maybe change it to just strings
-						img(ng-src='../public/images/back.jpg').front
-						img(ng-src='../public/images/{{card.title}}.jpg').back
+//				div.cardsWrapper
+//					div.card (ng-class='{flipped: tile.flipped}')
+//						//prob need images? or maybe change it to just strings
+//						img(ng-src='../public/images/back.jpg').front
+//						img(ng-src='../public/images/{{card.title}}.jpg').back
 
 		//maybe a message div to display {{game.message}}
+

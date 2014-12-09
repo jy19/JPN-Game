@@ -1,7 +1,8 @@
 /* memory card match game logic */
 
-function Card(title) {
+function Card(title, string) {
 	this.title = title;
+	this.string = string;
 	this.flipped = false;
 }
 
@@ -10,7 +11,9 @@ Card.prototype.flip = function() {
 }
 
 function Game(cardNames) {
-	var cardDeck = makeDeck(cardNames);
+	// var cardDeck = makeDeck(cardNames);
+
+	this.cardDeck = makeDeck(cardNames);
 
 	this.grid = makeGrid(cardDeck);
 	this.unmatchedPairs = cardNames.length;

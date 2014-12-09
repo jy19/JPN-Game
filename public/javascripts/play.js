@@ -1,5 +1,5 @@
 function playkana() {
-	window.location.href = "/game";
+	window.location.href = "/matchgame";
 }
 
 $(document).ready( function() {
