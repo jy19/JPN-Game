@@ -10,24 +10,3 @@ block content
 		table#gametable
 
 	div#timerWrapper
-
-	script.
-		$(document).ready(function() {
-			var game = createGame(0);
-			console.log("game????");
-			console.log(game);
-			$("#tablewrapper").on("click", ".card", function() {
-				console.log("content clicked");
-				var cardID = $(this).data("cardnum");
-				console.log(cardID);
-				var currCard = getCard(cardID);
-				game.flipCard(currCard);
-				if(!currCard.flipped) {
-					$('[data-cardnum='+cardID+']').attr("class", "card")
-				}
-				if(currCard.flipped) {
-					$('[data-cardnum='+cardID+']').attr("class", "card flipped")
-				}
-				
-			});
-		});
