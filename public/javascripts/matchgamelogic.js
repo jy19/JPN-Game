@@ -12,20 +12,14 @@ Card.prototype.flip = function() {
 
 function Game(cardDeck) {
 
-	console.log("game");
-	console.log(JSON.stringify(cardDeck));
-	console.log(cardDeck);
-	console.log("length of card deck: " + cardDeck.length);
-	// this.cardDeck = makeDeck(cardNames);
-	this.deck = cardDeck;
+	this.deck = cardDeck; 
 
-	this.grid = makeGrid(this.deck);
+	var tmpCards = cardDeck.slice();
+
+	this.grid = makeGrid(tmpCards); 
+
 	this.unmatchedPairs = cardDeck.length;
 
-	console.log("unmatched pairs: " + this.unmatchedPairs);
-
-	//var startTime = performance.now; //start timer
-	var matched = 0;
 
 	this.flipCard = function(card) {
 		if(card.flipped) {
@@ -49,16 +43,14 @@ function Game(cardDeck) {
 			if(this.firstPick.title === card.title) {
 				console.log("matched!");
 				this.unmatchedPairs--;
-				matched++;
 				//if unmatched pairs > 0, keep going, else won
 
-				if(matched == cardDeck.length/2) {
-				// if(this.unmatchedPairs < 0) {
+				if(this.unmatchedPairs < 0) {
 					
 					var endTime = performance.now();
 					var totaltime = endTime - startTime;
 
-					alert("you won! time taken: " + totaltime);
+					// alert("you won! time taken: " + totaltime);
 				}
 				this.firstPick = this.secondPick = undefined;
 			}
@@ -80,21 +72,20 @@ function makeDeck (cardNames) {
 		// cardDeck.push(new Card(card.title, card.string));
 	});
 
-	console.log(cardDeck);
 	return cardDeck;
 }
 
 /* create the grid of cards */ 
-function makeGrid (cardDeck) {
+function makeGrid (tmpCards) {
 	// console.log("making grid...");
 	// console.log(cardDeck);
-	var gridSize = Math.sqrt(cardDeck.length),
+	var gridSize = Math.sqrt(tmpCards.length),
 		grid = [];
 
 	for(var row = 0; row < gridSize; row++) {
 		grid[row] = [];
 		for(var col = 0; col < gridSize; col++) {
-			grid[row][col] = fillCard(cardDeck);
+			grid[row][col] = fillCard(tmpCards);
 		}
 	}
 
@@ -103,7 +94,7 @@ function makeGrid (cardDeck) {
 
 /* randomly choose a card from deck for random order of grid */
 
-function fillCard(cardDeck) {
-	var pos = Math.floor(Math.random()*cardDeck.length);
-	return cardDeck.splice(pos, 1)[0];
+function fillCard(tmpCards) {
+	var pos = Math.floor(Math.random()*tmpCards.length);
+	return tmpCards.splice(pos, 1)[0];
 }

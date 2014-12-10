@@ -141,23 +141,4 @@ form {
 	margin: 0 auto;
 }
 
-/* game */
-table {
-	width: 70%;
-	height: 100%;
-	font-size: 5em;
-	border-spacing: 5px;
-	border-collapse: separate;
-}
-
-td {
-	border: 1px solid black;
-	width: 20%;
-	position: relative;
-}
-
-td .content {
-	text-align: center;
-
-}
 

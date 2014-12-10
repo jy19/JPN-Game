@@ -17,8 +17,8 @@ router.get('/play', function(req, res) {
 	res.render('play', {title: 'Play'});
 });
 
-router.get('/matchgame', function(req, res) {
-	res.render('matchgame', {title: 'Memory Game'});
+router.get('/matchgame0', function(req, res) {
+	res.render('matchgame0', {title: 'Memory Game'});
 });
 
 router.get('/matchgame.html', function(req, res) {

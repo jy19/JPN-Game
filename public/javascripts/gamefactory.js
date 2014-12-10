@@ -107,6 +107,14 @@ function createGame(lvltype) {
 	console.log(game);
 
 	createTable(game);
+
+	return game;
+}
+
+var cardMap = {};
+
+function getCard(k) {
+	return cardMap[k];
 }
 
 function createTable(game) {
@@ -122,15 +130,22 @@ function createTable(game) {
 		// for(var i = 0; i < deck.length; i++) {
 		// 	tablehtml += "<tr>";
 		// 	for(var j = 0; j < deck[i].length; j++) {
-		// 		tablehtml += "<td>" + deck[i][j].string + "</td>"
+		// 		tablehtml += "<td><div class='content'>" + grid[i][j].string + "</div></td>"
 		// 	}
-		// 	table.html += "</tr>";
+		// 	tablehtml += "</tr>";
 		// }
 
 		for(var i = 0; i < grid.length; i++) {
 			tablehtml += "<tr>";
 			for(var j = 0; j < grid.length; j++) {
-				tablehtml += "<td><div class='content'>" + grid[i][j].string + "</div></td>"
+				var currKey = i + "-" + j;
+				cardMap[currKey] = grid[i][j];
+				tablehtml += "<td><div class='cardsWrapper'>"
+				tablehtml += "<div class='card' data-cardnum='" + i + "-" + j + "'>"
+				tablehtml += "<div class='front content'></div>"
+				tablehtml += "<div class='back content'>" 
+					+ grid[i][j].string + "</div></div></div></td>"
+				// tablehtml += "<td><div class='content' style='cursor: pointer;' onclick='game.flipCard()'>" + grid[i][j].string + "</div></td>"	
 			}
 			tablehtml += "</tr>";
 		}
@@ -143,14 +158,3 @@ function createTable(game) {
 
 }
 
-// var memorygame = angular.module('matchgame', []);
-
-// memorygame.factory('game', function() {
-// 	var cardNames = getCards();
-
-// 	return new Game(cardNames);
-// });
-
-// memorygame.controller('GameCtrl', function GameCtrl($scope, game) {
-// 	$scope.game = game;
-// });

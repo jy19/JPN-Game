@@ -9,12 +9,13 @@ $(document).ready( function() {
 
 	$("#kanabtn").click( function() {
 		console.log("clicked kana btn");
-		playkana();
+		playmatch(0);
 	});
 
-	function playkana() {
+	function playmatch(lvltype) {
 		// window.location.href = "/matchgame";
-		window.location.href = "/matchgame.html";
+		window.location.href = "/matchgame" + lvltype;
+		// window.location.href = "/matchgame.html";
 	}
 
 });

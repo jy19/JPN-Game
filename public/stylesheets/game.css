@@ -1,7 +1,13 @@
 /* game css stylesheet */
 
-table{
-  /*width: 60%;*/
+#tablewrapper {
+  width: 50%;
+  text-align: right;
+  margin: auto;
+}
+
+table#gametable{
+  width: 100%;
   /*height: 100%;*/
   text-align: center;
   border-spacing: 10px;
@@ -44,6 +50,7 @@ td {
 }
 
 .card.flipped {
+  cursor: default;
   -webkit-transform: rotateY( 180deg );
   -moz-transform: rotateY( 180deg );
   -ms-transform: rotateY( 180deg );
