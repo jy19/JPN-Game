@@ -3,8 +3,6 @@ var router = express.Router();
 var passport = require('passport');
 var User = require('../models/user');
 
-//Get Home Page
-
 router.get('/', function(req, res) {
 	console.log("redirect to index");
 	console.log(req.user);
@@ -23,6 +21,10 @@ router.get('/matchgame', function(req, res) {
 	res.render('matchgame', {title: 'Memory Game'});
 });
 
+router.get('/matchgame.html', function(req, res) {
+	res.render('matchgame.html', {title: 'Memory Game' });
+});
+
 router.get('/register', function(req, res) {
 	res.render('register', { title: 'register' });
 });
@@ -30,7 +32,8 @@ router.get('/register', function(req, res) {
 router.post('/register', function(req, res) {
 	User.register(new User({ username: req.body.username }), req.body.password, function(err, account) {
 		if(err) {
-			return res.render('register', { info: "Sorry, that username is already taken." });
+			var info = err.message;
+			return res.render('register', { messages: info  });
 		}
 
 		passport.authenticate('local')(req, res, function() {
@@ -51,7 +54,6 @@ router.post('/login', function(req, res, next) {
 		}
 
 		if(!user) {
-			console.log("no user");
 			var info = "Invalid username or password";
 			res.render('login', {messages: info } );
 		}

@@ -39,17 +39,28 @@ var rchars = ["a", "i", "u", "e", "o",
 //randomly select from arrays to gen grid
 //generate table/grid with jquery?
 
-function getCards(numCards, chars) {
+function getCards(chars, numCards) {
+	console.log("get cards");
+	console.log(chars);
+	
 	numCards = numCards || 16;
+
+	console.log(numCards);
 	var cards = [];
 
 	var tmphchars = hchars,
 		tmpkchars = kchars,
 		tmprchars = rchars;
 
+	var usedChars = [];
+
+
 	for(var i = 0; i < numCards/2; i++) {
 		var pos = Math.floor(Math.random()*hchars.length);
-		
+		while($.inArray(pos, usedChars) > -1) {
+			pos = Math.floor(Math.random()*hchars.length);
+		}
+		usedChars.push(pos);
 		// cards.push(new Card({
 		// 	st: hchars[pos],
 		// 	title: pos,
@@ -58,15 +69,16 @@ function getCards(numCards, chars) {
 
 		if($.inArray("h", chars) > -1) {
 			cards.push(new Card(pos, hchars[pos]));
-			tmphchars = tmphchars.splice(pos, 1)[0];
+			// tmphchars = tmphchars.splice(pos, 1)[0];
+			// tmphchars.splice(pos, 1);
 		}
 		if($.inArray("k", chars) > -1) {
 			cards.push(new Card(pos, kchars[pos]));
-			tmpkchars = tmpkchars.splice(pos, 1)[0];
+			// tmpkchars.splice(pos, 1);
 		}
 		if($.inArray("r", chars) > -1) {
 			cards.push(new Card(pos, rchars[pos]));
-			tmprchars = tmprchars.splice(pos, 1)[0];
+			// tmprchars.splice(pos, 1);
 		}
 		
 	}
@@ -75,45 +87,55 @@ function getCards(numCards, chars) {
 }
 
 function createGame(lvltype) {
-	var cardNames = [];
+	console.log("create game");
+	var cardDeck = [];
 
 	switch(lvltype)  {
 		case 0: //h and k
-			getCards(["h", "k"]);
+			cardDeck = getCards(["h", "k"]);
 			break;
 		case 1: //h and r
-			getCards(["h", "r"]);
+			cardDeck = getCards(["h", "r"]);
 			break;
 		case 2: // k and r
-			getCards(["k", "r"]);
+			cardDeck = getCards(["k", "r"]);
 			break;
 
 	}
 
-	var cardNames = getCards();
-
-	var game = new Game(cardNames);
+	var game = new Game(cardDeck);
 	console.log(game);
 
 	createTable(game);
 }
 
 function createTable(game) {
+	console.log("Create table");
 	var grid = game.grid;
-	var deck = game.cardDeck;
+	var deck = game.deck;
 
 	$("#gametable").ready( function() {
 		console.log(deck);
 
 		var tablehtml = "";
 
-		for(var i = 0; i < deck.length; i++) {
+		// for(var i = 0; i < deck.length; i++) {
+		// 	tablehtml += "<tr>";
+		// 	for(var j = 0; j < deck[i].length; j++) {
+		// 		tablehtml += "<td>" + deck[i][j].string + "</td>"
+		// 	}
+		// 	table.html += "</tr>";
+		// }
+
+		for(var i = 0; i < grid.length; i++) {
 			tablehtml += "<tr>";
-			for(var j = 0; j < deck[i].length; j++) {
-				tablehtml += "<td>" + deck[i][j].string + "</td>"
+			for(var j = 0; j < grid.length; j++) {
+				tablehtml += "<td><div class='content'>" + grid[i][j].string + "</div></td>"
 			}
-			table.html += "</tr>";
+			tablehtml += "</tr>";
 		}
+
+
 
 		$("#gametable").append(tablehtml);
 		

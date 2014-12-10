@@ -9,17 +9,16 @@ block content
 	p#pagetitle
 		| Login
 
-	div#logincontainer
-		form(role='form', action='login', method='post', style='max-width: 400px;')
-			if(messages)
-				div#note #{messages}
-			.form-group
-				input.form-control(type='text', name="username", placeholder='Enter Username')
-			.form-group
-				input.form-control(type='password', name="password", placeholder='Password')
-			div#submitbtnswrapper
-				button.buttons(type='submit') Submit
-				&nbsp;
-				a(href='/')
-					button.buttons.buttonsinv(type="button") Cancel  
-	h4= info		
+	form(role='form', action='login', method='post')
+		if(messages)
+			div#note #{messages}
+		br
+		.form-group
+			input.form-control(type='text', name="username", placeholder='Enter Username')
+		.form-group
+			input.form-control(type='password', name="password", placeholder='Password')
+		div#submitbtnswrapper
+			button.buttons(type='submit') Submit
+			&nbsp;
+			a(href='/')
+				button.buttons.buttonsinv(type="button") Cancel  	

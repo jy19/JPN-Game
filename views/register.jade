@@ -4,14 +4,16 @@ block content
 	p#pagetitle
 		| Register
 		
-	form(role='form', action='/register', method='post', style='max-width: 400px;')
+	form(role='form', action='/register', method='post')
+		if(messages)
+			div#note #{messages}
+		br
 		.form-group
 			input.form-control(type='text', name='username', placeholder='Enter Username')
 		.form-group
 			input.form-control(type='password', name="password", placeholder='Password')
-		button.buttons(type='submit') Submit
-		&nbsp;
-		a(href='/')
-			button.buttons.buttonsinv(type="button") Cancel	
-	br
-	h4= info
+		div#submitbtnswrapper
+			button.buttons(type='submit') Submit
+			&nbsp;
+			a(href='/')
+				button.buttons.buttonsinv(type="button") Cancel	

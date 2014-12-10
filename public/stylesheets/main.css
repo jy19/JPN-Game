@@ -111,6 +111,9 @@ img.resize {
 
 .pbuttons {
 	padding: 20%;
+	width: auto;
+	height: auto;
+	/*height: 100%;*/
 }
 
 .makesquare {
@@ -121,15 +124,40 @@ img.resize {
 	display: block;
 }
 
-/*log in page */
-
-#logincontainer {
-	text-align: center;
-	margin: auto;
-	position: relative;
-}
+/*log in and register pages */
 
 #submitbtnswrapper {
 	text-align: left
 	height: 20%;
 }
+
+#note {
+	text-align: left;
+	color: #de6666;
+}
+
+form {
+	width: 30%;
+	margin: 0 auto;
+}
+
+/* game */
+table {
+	width: 70%;
+	height: 100%;
+	font-size: 5em;
+	border-spacing: 5px;
+	border-collapse: separate;
+}
+
+td {
+	border: 1px solid black;
+	width: 20%;
+	position: relative;
+}
+
+td .content {
+	text-align: center;
+
+}
+

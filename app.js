@@ -41,6 +41,9 @@ passport.deserializeUser(User.deserializeUser());
 mongoose.connect('mongodb://localhost/passport_local_mongoose');
 
 app.use('/', routes);
+
+//register api???
+// app.use('/api', routes);
 // require('./routes')(app);
 
 // catch 404 and forward to error handler

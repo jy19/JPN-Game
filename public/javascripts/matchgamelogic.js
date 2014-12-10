@@ -10,14 +10,22 @@ Card.prototype.flip = function() {
 	this.flipped = !this.flipped;
 }
 
-function Game(cardNames) {
-	// var cardDeck = makeDeck(cardNames);
-	console.log("game");
-	console.log(cardNames);
-	this.cardDeck = makeDeck(cardNames);
+function Game(cardDeck) {
 
-	this.grid = makeGrid(this.cardDeck);
-	this.unmatchedPairs = cardNames.length;
+	console.log("game");
+	console.log(JSON.stringify(cardDeck));
+	console.log(cardDeck);
+	console.log("length of card deck: " + cardDeck.length);
+	// this.cardDeck = makeDeck(cardNames);
+	this.deck = cardDeck;
+
+	this.grid = makeGrid(this.deck);
+	this.unmatchedPairs = cardDeck.length;
+
+	console.log("unmatched pairs: " + this.unmatchedPairs);
+
+	//var startTime = performance.now; //start timer
+	var matched = 0;
 
 	this.flipCard = function(card) {
 		if(card.flipped) {
@@ -39,8 +47,19 @@ function Game(cardNames) {
 		}
 		else {
 			if(this.firstPick.title === card.title) {
+				console.log("matched!");
 				this.unmatchedPairs--;
+				matched++;
 				//if unmatched pairs > 0, keep going, else won
+
+				if(matched == cardDeck.length/2) {
+				// if(this.unmatchedPairs < 0) {
+					
+					var endTime = performance.now();
+					var totaltime = endTime - startTime;
+
+					alert("you won! time taken: " + totaltime);
+				}
 				this.firstPick = this.secondPick = undefined;
 			}
 			else {
@@ -52,19 +71,23 @@ function Game(cardNames) {
 }
 
 /* create deck -- basically an array with two of each cards in it */
+//not called
 function makeDeck (cardNames) {
 	console.log("make deck");
 	var cardDeck = [];
-	cardNames.forEach(function(name) {
-		cardDeck.push(new Card(name));
-		cardDeck.push(new Card(name));
+	cardNames.forEach(function(card) {
+		cardDeck.push(new Card(card.title, card.string));
+		// cardDeck.push(new Card(card.title, card.string));
 	});
 
+	console.log(cardDeck);
 	return cardDeck;
 }
 
 /* create the grid of cards */ 
 function makeGrid (cardDeck) {
+	// console.log("making grid...");
+	// console.log(cardDeck);
 	var gridSize = Math.sqrt(cardDeck.length),
 		grid = [];
 
