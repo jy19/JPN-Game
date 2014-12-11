@@ -15,7 +15,7 @@ var passport = require('passport');
 var app = express();
 
 // process.env.PORT = 9100;
-app.set('port', process.env.PORT || 9100);
+// app.set('port', process.env.PORT || 9100);
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
