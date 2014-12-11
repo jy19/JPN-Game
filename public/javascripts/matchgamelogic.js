@@ -17,9 +17,12 @@ function Game(cardDeck) {
 	var tmpCards = cardDeck.slice();
 
 	this.grid = makeGrid(tmpCards); 
+	
+	// this.timetaken = 
 
-	this.unmatchedPairs = cardDeck.length;
+	// this.unmatchedPairs = cardDeck.length;
 
+	var matched = 0;
 
 	this.flipCard = function(card) {
 		if(card.flipped) {
@@ -42,15 +45,18 @@ function Game(cardDeck) {
 		else {
 			if(this.firstPick.title === card.title) {
 				console.log("matched!");
-				this.unmatchedPairs--;
+				matched++;
+				console.log(matched);
+				// this.unmatchedPairs--;
 				//if unmatched pairs > 0, keep going, else won
 
-				if(this.unmatchedPairs < 0) {
+				// if(this.unmatchedPairs < 0) {
+				if(matched == cardDeck.length/2) {
 					
-					var endTime = performance.now();
-					var totaltime = endTime - startTime;
+					// var endTime = performance.now();
+					// var totaltime = endTime - startTime;
 
-					// alert("you won! time taken: " + totaltime);
+					alert("you won!");
 				}
 				this.firstPick = this.secondPick = undefined;
 			}
