@@ -6,9 +6,11 @@ var mongoose = require('mongoose');
 var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
 var routes = require('./routes/index');
-var api = require('./routes/api');
+
+// var api = require('./routes/api');
+// var authroutes = require('./routes/auth');
+
 var passport = require('passport');
-// var http = require('http').Server(app);
 
 var app = express();
 
@@ -41,8 +43,23 @@ passport.deserializeUser(User.deserializeUser());
 //mongoose
 mongoose.connect('mongodb://localhost/passport_local_mongoose');
 
-//register api?
-app.use('/api', api);
+//api routes
+// var apirouter = express.Router();
+
+// //endpoint handlers for /users
+// apirouter.route('/users')
+//     .post(api.postUser)
+//     .get(authroutes.isAuthenticated, api.getUsers);
+
+// //endpoint handlers for /users/:user_id
+// apirouter.route('/users/:user_id')
+//     .get(authroutes.isAuthenticated, api.getUser)
+//     .put(authroutes.isAuthenticated, api.putUser)
+//     .delete(authroutes.isAuthenticated, api.deleteUser);
+
+// //register api
+// app.use('/api', apirouter);
+
 app.use('/', routes);
 
 

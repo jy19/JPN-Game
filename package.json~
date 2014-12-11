@@ -8,11 +8,12 @@
   },
   "dependencies": {
     "bcrypt": "^0.8.0",
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "1.9.3",
     "connect-flash": "^0.1.1",
     "debug": "2.1.0",
     "ejs": "*",
-    "express": "*",
+    "express": "4.10.4",
     "jade": "^1.8.1",
     "mongodb": "^1.4.23",
     "mongoose": "^3.8.20",
