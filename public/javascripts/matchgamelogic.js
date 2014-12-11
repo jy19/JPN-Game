@@ -17,7 +17,7 @@ function Game(cardDeck) {
 	var tmpCards = cardDeck.slice();
 
 	this.grid = makeGrid(tmpCards); 
-	
+
 	// this.timetaken = 
 
 	// this.unmatchedPairs = cardDeck.length;
@@ -52,7 +52,10 @@ function Game(cardDeck) {
 
 				// if(this.unmatchedPairs < 0) {
 				if(matched == cardDeck.length/2) {
-					
+					Timer.toggle();
+					var timetaken = $('#stopwatch').text();
+					console.log(timetaken);
+					Timer.stop();
 					// var endTime = performance.now();
 					// var totaltime = endTime - startTime;
 
