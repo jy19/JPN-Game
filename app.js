@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 var flash = require('connect-flash');
 var LocalStrategy = require('passport-local').Strategy;
 var routes = require('./routes/index');
+var api = require('./routes/api');
 var passport = require('passport');
 // var http = require('http').Server(app);
 
@@ -40,11 +41,11 @@ passport.deserializeUser(User.deserializeUser());
 //mongoose
 mongoose.connect('mongodb://localhost/passport_local_mongoose');
 
+//register api?
+app.use('/api', api);
 app.use('/', routes);
 
-//register api???
-// app.use('/api', routes);
-// require('./routes')(app);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

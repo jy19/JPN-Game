@@ -71,18 +71,6 @@ td {
   transform: rotateY( 180deg );
 }
 
-/*.card img {
-  display: block;
-  height: 100%;
-  width: 100%;
-  position: absolute;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
-  -o-backface-visibility: hidden;
-  backface-visibility: hidden;
-}*/
-
 .content {
   font-size: 3em;
 }
