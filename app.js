@@ -14,7 +14,8 @@ var passport = require('passport');
 
 var app = express();
 
-process.env.PORT = 9100;
+// process.env.PORT = 9100;
+app.set('port', process.env.PORT || 9100);
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -41,7 +42,7 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //mongoose
-mongoose.connect("mongodb://heroku_app32428980:1fsa1050k5quv83j1ts4cm68gj@ds063140.mongolab.com:63140/heroku_app32428980" ||'mongodb://localhost/passport_local_mongoose');
+mongoose.connect("mongodb://heroku_app32428980:1fsa1050k5quv83j1ts4cm68gj@ds063140.mongolab.com:63140/heroku_app32428980");// ||'mongodb://localhost/passport_local_mongoose');
 // mongoose.connect('mongodb://localhost/kjusers');
 
 //api routes
