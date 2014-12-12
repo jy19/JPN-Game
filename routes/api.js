@@ -91,14 +91,19 @@ var User = require('../models/user');
 
 //create endpoint /api/users for POSTS
 exports.postUser = function(req, res) {
+	console.log("post user");
+
 	var user = new User(); //new instance of user
+
 		user.username = req.body.username; 
 		user.password = req.body.password;
 
 		user.save(function(err) {
-			if(err) 
+			console.log("saving new user..");
+			if(err) {
 				console.log(err);
 				res.send(err);
+			} 
 
 			res.json({message: 'User created!', data: user });
 	});
@@ -131,13 +136,13 @@ exports.putUser = function(req, res) {
 			res.send(err);
 
 		user.password = req.body.password; //update password 
-
+		user.scores = req.body.scores; //update high score
 		//save user
 		user.save(function(err) {
 			if(err)
 				res.send(err)
 
-			res.json({message: 'User password updated' });
+			res.json({message: 'User password and scores updated' });
 		});
 	});
 };

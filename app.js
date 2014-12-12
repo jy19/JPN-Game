@@ -42,12 +42,15 @@ passport.deserializeUser(User.deserializeUser());
 
 
 //mongoose
-mongoose.connect("mongodb://heroku_app32428980:1fsa1050k5quv83j1ts4cm68gj@ds063140.mongolab.com:63140/heroku_app32428980" ||'mongodb://localhost/passport_local_mongoose');
+mongodb://heroku_app32428980:1fsa1050k5quv83j1ts4cm68gj@ds063140.mongolab.com:63140/heroku_app32428980
+mongoose.connect(process.env.MONGOLAB_URI ||'mongodb://localhost/passport_local_mongoose');
 // mongoose.connect('mongodb://localhost/kjusers');
 
 //api routes
 var apirouter = express.Router();
 
+
+//api with authorization
 //endpoint handlers for /users
 apirouter.route('/users')
     .post(api.postUser)
@@ -58,6 +61,17 @@ apirouter.route('/users/:user_id')
     .get(authroutes.isAuthenticated, api.getUser)
     .put(authroutes.isAuthenticated, api.putUser)
     .delete(authroutes.isAuthenticated, api.deleteUser);
+
+// //endpoint handlers for /users
+// apirouter.route('/users')
+//     .post(api.postUser)
+//     .get(api.getUsers);
+
+// //endpoint handlers for /users/:user_id
+// apirouter.route('/users/:user_id')
+//     .get(api.getUser)
+//     .put(api.putUser)
+//     .delete(api.deleteUser);
 
 //register api
 app.use('/api', apirouter);

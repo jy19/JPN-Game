@@ -26,30 +26,35 @@ var UserSchema = new mongoose.Schema({
 	// 	required: true
 	// }
 	username: String,
-	password: String
+	password: String,
+	scores: [String]
 });
 
 //execute before each user.save call
 UserSchema.pre('save', function(callback) {
+	console.log("pre save");
 	var user = this;
 
-	//break if pw has not changed
-	if(!user.isModified('password')) return callback();
+	// Break out if the password hasn't changed
+	if (!user.isModified('password')) 
+		console.log("password not modified");
+		return callback();
 
-	//if password changed, rehash
+	// re hash changed password
 	bcrypt.genSalt(5, function(err, salt) {
-		if(err)
+		if (err) 
 			return callback(err);
 
 		bcrypt.hash(user.password, salt, null, function(err, hash) {
-			if(err) 
+			if (err) 
 				return callback(err);
-
 			user.password = hash;
 			callback();
 		});
+
 	});
-});
+
+	});
 
 UserSchema.methods.verifyPassword = function(password, cb) {
 	bcrypt.compare(password, this.password, function(err, isMatch) {
