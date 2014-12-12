@@ -1,10 +1,23 @@
 extends layout
 
-block style
-	link(rel='stylesheet', href='/stylesheets/game.css')
-
 block content
-	// need time/pause somewhere..
+	div#gameinfo(data-toggle='modal' data-target='#infomodal')
+		| info
+
+	//modal
+	div.modal.fade#infomodal(tabindex='-1' role='dialog' aria-labelledby='infoModalLabel' aria-hidden='true')
+		div.modal-dialog
+			div.modal-content
+				div.modal-header
+					button.close#closemodalx(data-dismiss='modal')
+						span(aria-hidden='true') &times;
+						span.sr-only close
+					h4.modal-title#infoModalLabel to play
+				div.modal-body
+					| match the hiragana with the katakana characters
+				div.modal-footer
+					button.buttons#closemodalbtn(data-dismiss='modal') close
+
 	div#timerWrapper
 		span#stopwatch
 			| 00:00:00

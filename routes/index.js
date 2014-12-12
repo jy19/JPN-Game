@@ -32,6 +32,7 @@ router.get('/register', function(req, res) {
 router.post('/register', function(req, res) {
 	User.register(new User({ username: req.body.username }), req.body.password, function(err, account) {
 		if(err) {
+			console.log("REGISTER ERROR");
 			console.log(err);
 			var info = err.message;
 			return res.render('register', { messages: info  });

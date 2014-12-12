@@ -16,15 +16,17 @@ var bcrypt = require('bcrypt');
 
 //user schema
 var UserSchema = new mongoose.Schema({
-	username: {
-		type: String,
-		unique: true,
-		required: true
-	},
-	password: {
-		type: String,
-		required: true
-	}
+	// username: {
+	// 	type: String,
+	// 	unique: true,
+	// 	required: true
+	// },
+	// password: {
+	// 	type: String,
+	// 	required: true
+	// }
+	username: String,
+	password: String
 });
 
 //execute before each user.save call

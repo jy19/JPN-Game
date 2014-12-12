@@ -33,6 +33,19 @@ $(document).ready(function() {
 		return (min > 0 ? pad(min, 2) : "00") + ":" + pad(sec, 2) + ":" + hundredths;
 	}
 
+	//pause timer when info clicked
+	$("#gameinfo").click( function() {
+		Timer.toggle();
+	});
+
+	$("#closemodalbtn").click( function() {
+		Timer.toggle();
+	});
+
+	$("#closemodalx").click( function() {
+		Timer.toggle();
+	});
+
 	var game = createGame(0);
 
 	init();
