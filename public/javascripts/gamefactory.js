@@ -136,7 +136,7 @@ function createTable(game) {
 		// }
 
 		for(var i = 0; i < grid.length; i++) {
-			tablehtml += "<tr>";
+			tablehtml += "<tr class='gamerow'>";
 			for(var j = 0; j < grid.length; j++) {
 				var currKey = i + "-" + j;
 				cardMap[currKey] = grid[i][j];
