@@ -39,10 +39,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
-
 //mongoose
-mongodb://heroku_app32428980:1fsa1050k5quv83j1ts4cm68gj@ds063140.mongolab.com:63140/heroku_app32428980
 mongoose.connect(process.env.MONGOLAB_URI ||'mongodb://localhost/passport_local_mongoose');
 // mongoose.connect('mongodb://localhost/kjusers');
 
